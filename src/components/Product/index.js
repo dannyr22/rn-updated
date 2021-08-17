@@ -7,78 +7,104 @@ import {
   Text,
   View,
   Image,
+  SectionList,
 } from 'react-native';
-import {Dimensions} from 'react-native';
 
 // var width = Dimensions.get('window').width; //full width
 // var height = Dimensions.get('window').height; //full height
 
-const Item = ({item}) => (
-  <View style={styles.productContainer}>
-    <View style={styles.productImageContainer}>
-      <Image style={styles.productImage} source={item.imgSource} />
-    </View>
-    <View style={styles.productInfo}>
-      <View style={styles.productText}>
-        <Text style={styles.textPrimary}>{item.title}</Text>
-        <Text style={styles.textPrimary}>£{item.price}</Text>
-        <Text style={styles.textSecondary}>{item.description}</Text>
-      </View>
-      <View>
-        <Image style={styles.productAvatar} source={{uri: item.imgURL}} />
-      </View>
-    </View>
-  </View>
-);
-
-const Product = ({products}) => {
-  const renderItem = ({item}) => <Item item={item} />;
-
+const Item = ({item}) => {
   return (
-    <SafeAreaView>
-      <FlatList
-        data={products}
-        renderItem={renderItem}
-        keyExtractor={item => item.id}
-      />
-    </SafeAreaView>
+    <View style={styles.item}>
+      {/* <View style={styles.itemImageContainer}> */}
+      <Image style={styles.itemImage} source={item.imgSource} />
+      {/* </View> */}
+      <View style={styles.itemInfo}>
+        <View style={styles.itemText}>
+          <Text style={styles.textPrimary}>{item.title}</Text>
+          <View style={styles.priceContainer}>
+            {item.discountAvailable ? (
+              <Text style={styles.textPrimaryVoid}>£{item.price}</Text>
+            ) : (
+              <Text style={styles.textPrimary}>£{item.price}</Text>
+            )}
+
+            {item.discountPercent && (
+              <Text style={styles.textPrimary}>
+                £{item.price - item.price * item.discountPercent}
+              </Text>
+            )}
+            {item.discountAmount && (
+              <Text style={styles.textPrimary}>
+                £{item.price - item.discountAmount}
+              </Text>
+            )}
+            {item.price === null && <Text style={styles.textFree}>Free</Text>}
+          </View>
+          <Text style={styles.textSecondary}>{item.description}</Text>
+        </View>
+        <View>
+          <Image style={styles.itemAvatar} source={{uri: item.imgURL}} />
+        </View>
+      </View>
+    </View>
+  );
+};
+
+const Product = ({SECTIONS}) => {
+  console.log(SECTIONS[0].data);
+
+  const renderItem = ({item}) => <Item item={item} />;
+  return (
+    <View style={styles.container}>
+      <SafeAreaView>
+        <SectionList
+          contentContainerStyle={{paddingHorizontal: 10}}
+          stickySectionHeadersEnabled={false}
+          sections={SECTIONS}
+          renderSectionHeader={({section}) => (
+            <>
+              <Text style={styles.sectionHeader}>{section.category}</Text>
+              <FlatList
+                horizontal
+                data={section.data}
+                renderItem={renderItem}
+                showsHorizontalScrollIndicator={false}
+              />
+            </>
+          )}
+          renderItem={({item, section}) => {
+            return null;
+          }}
+        />
+      </SafeAreaView>
+    </View>
   );
 };
 
 export default Product;
 
 const styles = StyleSheet.create({
-  test: {
-    color: 'blue',
+  item: {
+    marginHorizontal: 8,
+    flexDirection: 'column',
   },
-  image: {
-    width: 50,
-    height: 50,
-  },
-  productContainer: {
-    // borderColor: 'red',
-    // borderWidth: 4,
-    // aspectRatio: 4 / 3,
-  },
-  //   productItem: {},
-  productImage: {
-    width: '100%',
-    height: '100%',
+  itemImage: {
+    height: 250,
     borderTopLeftRadius: 10,
     borderTopRightRadius: 10,
-  },
-  productImageContainer: {
     aspectRatio: 4 / 3,
+    resizeMode: 'cover',
   },
-  productInfo: {
+  itemImageContainer: {
+    aspectRatio: 4 / 3,
+    height: '100%',
+    width: '100%',
+  },
+  itemInfo: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    // borderColor: 'red',
-    // borderWidth: 4,
-    width: '100%',
     resizeMode: 'cover',
-    // height: '100%',
-    // aspectRatio: 4 / 3,
     backgroundColor: 'rgba(52, 52, 52, 0.8)',
     padding: 8,
     borderBottomLeftRadius: 10,
@@ -87,7 +113,6 @@ const styles = StyleSheet.create({
   textPrimary: {
     color: '#FFF',
     fontWeight: 'bold',
-    // fontFamily: 'IM Fell DW Pica',
     fontSize: 16,
     margin: 4,
   },
@@ -97,9 +122,32 @@ const styles = StyleSheet.create({
     fontSize: 12,
     margin: 4,
   },
-  productAvatar: {
+  textFree: {
+    color: 'green',
+    fontWeight: 'bold',
+    fontSize: 16,
+    margin: 4,
+  },
+  itemAvatar: {
     borderRadius: 50 / 2,
     height: 50,
     width: 50,
+  },
+  sectionHeader: {
+    fontWeight: '800',
+    fontSize: 18,
+    color: '#f4f4f4',
+    marginTop: 20,
+    marginBottom: 5,
+  },
+  priceContainer: {
+    flexDirection: 'row',
+  },
+  textPrimaryVoid: {
+    color: '#CCC',
+    fontWeight: 'bold',
+    fontSize: 16,
+    margin: 4,
+    textDecorationLine: 'line-through',
   },
 });
