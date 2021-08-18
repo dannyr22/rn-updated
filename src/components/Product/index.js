@@ -1,5 +1,5 @@
 import {Rowing} from '@material-ui/icons';
-import React from 'react';
+import React, {useState} from 'react';
 import {
   SafeAreaView,
   StyleSheet,
@@ -8,52 +8,84 @@ import {
   View,
   Image,
   SectionList,
+  TouchableOpacity,
+  Animated,
+  Easing,
 } from 'react-native';
 
 // var width = Dimensions.get('window').width; //full width
 // var height = Dimensions.get('window').height; //full height
 
 const Item = ({item}) => {
-  return (
-    <View style={styles.item}>
-      {/* <View style={styles.itemImageContainer}> */}
-      <Image style={styles.itemImage} source={item.imgSource} />
-      {/* </View> */}
-      <View style={styles.itemInfo}>
-        <View style={styles.itemText}>
-          <Text style={styles.textPrimary}>{item.title}</Text>
-          <View style={styles.priceContainer}>
-            {item.discountAvailable ? (
-              <Text style={styles.textPrimaryVoid}>£{item.price}</Text>
-            ) : (
-              <Text style={styles.textPrimary}>£{item.price}</Text>
-            )}
+  const newScale = 2;
+  const [itemClicked, setItemClicked] = useState(true);
 
-            {item.discountPercent && (
-              <Text style={styles.textPrimary}>
-                £{item.price - item.price * item.discountPercent}
-              </Text>
-            )}
-            {item.discountAmount && (
-              <Text style={styles.textPrimary}>
-                £{item.price - item.discountAmount}
-              </Text>
-            )}
-            {item.price === null && <Text style={styles.textFree}>Free</Text>}
+  const animatedButtonScale = new Animated.Value(1);
+
+  const onPressIn = () => {
+    // Animated.spring(animatedButtonScale, {
+    //   toValue: 1.5,
+    //   useNativeDriver: true,
+    // }).start();
+    setItemClicked(prev => !prev);
+  };
+
+  const onPressOut = () => {
+    // Animated.spring(animatedButtonScale, {
+    //   toValue: 1,
+    //   useNativeDriver: true,
+    // }).start();
+    setItemClicked(prev => !prev);
+  };
+
+  //   const animatedScaleStyle = {
+  //     transform: [{scale: animatedButtonScale}],
+  //   };
+  return (
+    <TouchableOpacity
+      //   onPress={onPressIn}
+      onPressIn={onPressIn}
+      onPressOut={onPressOut}>
+      <Animated.View style={styles.item}>
+        <Image
+          style={itemClicked ? styles.itemImage : styles.itemClicked}
+          source={item.imgSource}
+        />
+        <View style={styles.itemInfo}>
+          <View style={styles.itemText}>
+            <Text style={styles.textPrimary}>{item.title}</Text>
+            <View style={styles.priceContainer}>
+              {item.discountAvailable ? (
+                <Text style={styles.textPrimaryVoid}>£{item.price}</Text>
+              ) : (
+                <Text style={styles.textPrimary}>£{item.price}</Text>
+              )}
+
+              {item.discountPercent && (
+                <Text style={styles.textPrimary}>
+                  £{item.price - item.price * item.discountPercent}
+                </Text>
+              )}
+              {item.discountAmount && (
+                <Text style={styles.textPrimary}>
+                  £{item.price - item.discountAmount}
+                </Text>
+              )}
+              {item.price === null && <Text style={styles.textFree}>Free</Text>}
+            </View>
+            <Text style={styles.textSecondary}>{item.description}</Text>
           </View>
-          <Text style={styles.textSecondary}>{item.description}</Text>
+          <View>
+            <Image style={styles.itemAvatar} source={{uri: item.imgURL}} />
+          </View>
         </View>
-        <View>
-          <Image style={styles.itemAvatar} source={{uri: item.imgURL}} />
-        </View>
-      </View>
-    </View>
+      </Animated.View>
+    </TouchableOpacity>
   );
 };
 
 const Product = ({SECTIONS}) => {
-  console.log(SECTIONS[0].data);
-
+  console.log('boo');
   const renderItem = ({item}) => <Item item={item} />;
   return (
     <View style={styles.container}>
@@ -88,6 +120,9 @@ const styles = StyleSheet.create({
   item: {
     marginHorizontal: 8,
     flexDirection: 'column',
+  },
+  itemClicked: {
+    transform: [{scale: 1.2}],
   },
   itemImage: {
     height: 250,
