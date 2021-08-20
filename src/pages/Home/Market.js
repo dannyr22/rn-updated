@@ -1,130 +1,43 @@
-import React, {Component} from 'react';
-import {SafeAreaView, Text, StyleSheet, View} from 'react-native';
-import Product from 'drCodeTest/src/components/Product/index';
+import React from 'react';
+// import {SafeAreaView, Text, StyleSheet, View} from 'react-native';
+import Product from 'drCodeTest/src/components/screens/Product';
+import ProductDetails from 'drCodeTest/src/components/screens/ProductDetails';
+import {createStackNavigator} from '@react-navigation/stack';
 
-const SECTIONS = [
-  {
-    category: 'cleaning',
-    data: [
-      {
-        id: 1,
-        title: 'toothpaste',
-        price: null,
-        imgSource: require('drCodeTest/assets/images/toothpaste.jpeg'),
-        description: 'I am toothpaste, the BEST toothpaste',
-        imgURL: `https://i.pravatar.cc/`,
-        category: 'cleaning',
-      },
-      {
-        id: 4,
-        title: 'Fabreeze Spray',
-        price: 7.99,
-        discountAvailable: true,
-        discountPercent: 0.2,
-        imgSource: require('drCodeTest/assets/images/fabreeze.jpeg'),
-        description: 'Amazing air freshner for the home',
-        imgURL: `https://i.pravatar.cc/`,
-        category: 'cleaning',
-      },
-      {
-        id: 7,
-        title: 'hoover',
-        price: 89.99,
-        discountAvailable: true,
-        discountAmount: 10,
-        imgSource: require('drCodeTest/assets/images/Hoovers.jpeg'),
-        description: 'Bran spanking new hoover by Byson',
-        imgURL: `https://i.pravatar.cc/`,
-        category: 'cleaning',
-      },
-    ],
-  },
-  {
-    category: 'puppy',
-    data: [
-      {
-        id: 2,
-        title: 'Dino Bear',
-        price: 5.99,
-        discountAvailable: true,
-        discountPercent: 0.5,
-        imgSource: require('drCodeTest/assets/images/deno-dinosaur.jpeg'),
-        description: 'Amazing Dino teddy bear for puppies',
-        imgURL: `https://i.pravatar.cc/`,
-        category: 'puppy',
-      },
-      {
-        id: 5,
-        title: 'Beagle Puppy',
-        price: 6.99,
-        discountAvailable: false,
-        imgSource: require('drCodeTest/assets/images/Sherlock.jpeg'),
-        description: 'Chewable slippers for puppies',
-        imgURL: `https://i.pravatar.cc/`,
-        category: 'puppy',
-      },
-      {
-        id: 8,
-        title: 'Squeeky ball set',
-        price: 7.99,
-        discountAvailable: true,
-        discountPercent: 0.2,
-        imgSource: require('drCodeTest/assets/images/squeeky.jpg'),
-        description: 'Annoying as hell but a very welcome distraction',
-        imgURL: `https://i.pravatar.cc/`,
-        category: 'puppy',
-      },
-    ],
-  },
-  {
-    category: 'sports',
-    data: [
-      {
-        id: 3,
-        title: 'Ping Pong Table',
-        price: 202.99,
-        discountAvailable: true,
-        discountAmount: 3,
-        imgSource: require('drCodeTest/assets/images/tabletennis.jpg'),
-        description: 'Home ping pong table',
-        imgURL: `https://i.pravatar.cc/`,
-        category: 'sports',
-      },
-      {
-        id: 6,
-        title: 'Tennis shorts',
-        price: 13.99,
-        discountAvailable: false,
-        imgSource: require('drCodeTest/assets/images/tennisshorts.jpeg'),
-        description: 'Very fashionable tennis shorts that turn into trousers!',
-        imgURL: `https://i.pravatar.cc/`,
-        category: 'sports',
-      },
+const MarketStack = createStackNavigator();
 
-      {
-        id: 9,
-        title: 'Nike Football',
-        price: 24.99,
-        discountAvailable: true,
-        discountPercent: 0.2,
-        imgSource: require('drCodeTest/assets/images/nike.jpeg'),
-        description: 'Because everyone needs a ball',
-        imgURL: `https://i.pravatar.cc/`,
-        category: 'sports',
-      },
-    ],
-  },
-];
-export default class Market extends Component {
-  render() {
-    return (
-      <SafeAreaView>
-        <View>
-          <Product SECTIONS={SECTIONS} />
-        </View>
-      </SafeAreaView>
-    );
-  }
-}
+const MarketStackScreen = ({navigation}) => {
+  return (
+    <MarketStack.Navigator>
+      <MarketStack.Screen
+        name="Product"
+        component={Product}
+        options={{navigation}}
+        // options={{
+        //   headerTitle: 'Products',
+        // }}
+      />
+      <MarketStack.Screen
+        name="ProductDetails"
+        component={ProductDetails}
+        options={{navigation}}
+      />
+    </MarketStack.Navigator>
+  );
+};
 
-const styles = StyleSheet.create({});
+// export default class Market extends Component {
+//   render() {
+//     return (
+//       <SafeAreaView>
+//         <View>
+//           <Product SECTIONS={SECTIONS} />
+//         </View>
+//       </SafeAreaView>
+//     );
+//   }
+// }
+
+export default MarketStackScreen;
+
+// const styles = StyleSheet.create({});

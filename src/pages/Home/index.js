@@ -2,14 +2,15 @@ import React from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Info from './Info';
-import Market from './Market';
+import MarketStackScreen from './Market';
 
 const HomeTabs = createBottomTabNavigator();
 
-const Home = () => {
+const Home = ({navigation}) => {
   return (
     <HomeTabs.Navigator
       screenOptions={({route}) => ({
+        headerShown: false,
         tabBarIcon: ({focused, color, size}) => {
           let iconName;
 
@@ -19,7 +20,6 @@ const Home = () => {
             iconName = 'shopping-cart';
           }
 
-          // You can return any component that you like here!
           return <MaterialIcons name={iconName} size={size} color={color} />;
         },
       })}
@@ -28,7 +28,7 @@ const Home = () => {
         inactiveTintColor: 'gray',
       }}>
       <HomeTabs.Screen name="Info" component={Info} />
-      <HomeTabs.Screen name="Market" component={Market} />
+      <HomeTabs.Screen name="Market" component={MarketStackScreen} />
     </HomeTabs.Navigator>
   );
 };
