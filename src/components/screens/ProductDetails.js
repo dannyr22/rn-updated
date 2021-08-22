@@ -86,7 +86,7 @@ const styles = StyleSheet.create({
   },
   content: {
     width: '100%',
-    // justifyContent: 'space-evenly',
+    justifyContent: 'space-around',
     flex: 1,
   },
   productImage: {
@@ -94,7 +94,7 @@ const styles = StyleSheet.create({
     aspectRatio: 1 / 1,
     // borderColor: 'red',
     // borderWidth: 4,
-    resizeMode: 'cover',
+    resizeMode: 'contain',
     alignSelf: 'center',
     // width: '100%',
   },

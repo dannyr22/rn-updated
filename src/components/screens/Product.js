@@ -1,4 +1,4 @@
-import {Rowing} from '@material-ui/icons';
+// import {Rowing} from '@material-ui/icons';
 import React, {useState} from 'react';
 // import {Navigation} from 'react-native-navigation';
 import {
@@ -11,6 +11,7 @@ import {
   SectionList,
   TouchableOpacity,
   Animated,
+  TouchableHighlight,
 } from 'react-native';
 
 // var width = Dimensions.get('window').width; //full width
@@ -18,44 +19,44 @@ import {
 
 const SECTIONS = [
   {
-    category: 'Cleaning',
+    category: 'Technology',
     data: [
       {
         id: 1,
-        title: 'Toothpaste',
+        title: "Macbook Pro'",
         price: null,
-        imgSource: require('drCodeTest/assets/images/toothpaste.jpg'),
-        description: 'I am toothpaste, the BEST toothpaste',
+        imgSource: require('drCodeTest/assets/images/mac.jpg'),
+        description: 'I am a Macbook!',
         fullDescription:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
-        category: 'cleaning',
+        category: 'technology',
       },
       {
         id: 4,
-        title: 'Fabreeze Spray',
+        title: 'Beats',
         price: 7.99,
         discountAvailable: true,
         discountPercent: 0.2,
-        imgSource: require('drCodeTest/assets/images/fabreeze.jpg'),
-        description: 'Amazing air freshner for the home',
+        imgSource: require('drCodeTest/assets/images/beats.jpg'),
+        description: 'Sound technology has a new master',
         fullDescription:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
-        category: 'cleaning',
+        category: 'technology',
       },
       {
         id: 7,
-        title: 'Hoover',
+        title: 'Galaxy 4 watch',
         price: 89.99,
         discountAvailable: true,
         discountAmount: 10,
-        imgSource: require('drCodeTest/assets/images/Hoovers.jpg'),
-        description: 'Bran spanking new hoover by Byson',
+        imgSource: require('drCodeTest/assets/images/galaxy-4.jpeg'),
+        description: 'Galaxies latest watch in the series',
         fullDescription:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
-        category: 'cleaning',
+        category: 'technology',
       },
     ],
   },
@@ -89,12 +90,12 @@ const SECTIONS = [
       },
       {
         id: 8,
-        title: 'Squeeky ball set',
+        title: 'Pet Camera',
         price: 7.99,
         discountAvailable: true,
         discountPercent: 0.2,
-        imgSource: require('drCodeTest/assets/images/squeeky.jpg'),
-        description: 'Annoying, but a very welcome distraction',
+        imgSource: require('drCodeTest/assets/images/petCam.png'),
+        description: 'Keep a much needed eye on them!',
         fullDescription:
           'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
@@ -169,7 +170,7 @@ const Item = ({item, navigation}) => {
   //     transform: [{scale: animatedButtonScale}],
   //   };
   return (
-    <TouchableOpacity
+    <TouchableHighlight
       onPress={() => navigation.push('ProductDetails', {product: item})}
       onPressIn={onPressIn}
       onPressOut={onPressOut}>
@@ -210,7 +211,7 @@ const Item = ({item, navigation}) => {
           </View>
         </View>
       </Animated.View>
-    </TouchableOpacity>
+    </TouchableHighlight>
   );
 };
 
@@ -251,12 +252,7 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   itemClicked: {
-    transform: [{scale: 1.4}],
-    borderTopLeftRadius: 10,
-    borderTopRightRadius: 10,
-    // aspectRatio: 4 / 3,
-    resizeMode: 'cover',
-    // width: '100%'
+    flex: 1,
   },
   itemImage: {
     height: 250,
