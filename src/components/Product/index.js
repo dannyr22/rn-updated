@@ -85,7 +85,6 @@ const Item = ({item}) => {
 };
 
 const Product = ({SECTIONS}) => {
-  console.log('boo');
   const renderItem = ({item}) => <Item item={item} />;
   return (
     <View style={styles.container}>
@@ -146,16 +145,18 @@ const styles = StyleSheet.create({
     borderBottomRightRadius: 10,
   },
   textPrimary: {
-    color: '#FFF',
+    // color: '#FFF',
     fontWeight: 'bold',
     fontSize: 16,
     margin: 4,
+    color: '#4863A0',
   },
   textSecondary: {
-    color: '#BDBDBD',
+    // color: '#BDBDBD',
     fontWeight: 'normal',
     fontSize: 12,
     margin: 4,
+    color: '#4863A0',
   },
   textFree: {
     color: 'green',
@@ -171,9 +172,11 @@ const styles = StyleSheet.create({
   sectionHeader: {
     fontWeight: '800',
     fontSize: 18,
-    color: '#f4f4f4',
+    // color: '#f4f4f4',
     marginTop: 20,
     marginBottom: 5,
+    color: '#4863A0',
+    paddingLeft: 40,
   },
   priceContainer: {
     flexDirection: 'row',

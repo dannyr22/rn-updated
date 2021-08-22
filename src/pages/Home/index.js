@@ -6,7 +6,7 @@ import MarketStackScreen from './Market';
 
 const HomeTabs = createBottomTabNavigator();
 
-const Home = ({navigation}) => {
+const Home = () => {
   return (
     <HomeTabs.Navigator
       screenOptions={({route}) => ({
@@ -22,11 +22,12 @@ const Home = ({navigation}) => {
 
           return <MaterialIcons name={iconName} size={size} color={color} />;
         },
+        tabBarActiveTintColor: 'tomato',
+        tabBarInactiveTintColor: 'gray',
       })}
-      tabBarOptions={{
-        activeTintColor: 'tomato',
-        inactiveTintColor: 'gray',
-      }}>
+      // tabBarOptions={{
+      // }}
+    >
       <HomeTabs.Screen name="Info" component={Info} />
       <HomeTabs.Screen name="Market" component={MarketStackScreen} />
     </HomeTabs.Navigator>

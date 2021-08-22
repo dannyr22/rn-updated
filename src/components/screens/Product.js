@@ -18,14 +18,16 @@ import {
 
 const SECTIONS = [
   {
-    category: 'cleaning',
+    category: 'Cleaning',
     data: [
       {
         id: 1,
-        title: 'toothpaste',
+        title: 'Toothpaste',
         price: null,
         imgSource: require('drCodeTest/assets/images/toothpaste.jpg'),
         description: 'I am toothpaste, the BEST toothpaste',
+        fullDescription:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
         category: 'cleaning',
       },
@@ -37,24 +39,28 @@ const SECTIONS = [
         discountPercent: 0.2,
         imgSource: require('drCodeTest/assets/images/fabreeze.jpg'),
         description: 'Amazing air freshner for the home',
+        fullDescription:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
         category: 'cleaning',
       },
       {
         id: 7,
-        title: 'hoover',
+        title: 'Hoover',
         price: 89.99,
         discountAvailable: true,
         discountAmount: 10,
         imgSource: require('drCodeTest/assets/images/Hoovers.jpg'),
         description: 'Bran spanking new hoover by Byson',
+        fullDescription:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
         category: 'cleaning',
       },
     ],
   },
   {
-    category: 'puppy',
+    category: 'Puppies',
     data: [
       {
         id: 2,
@@ -64,6 +70,8 @@ const SECTIONS = [
         discountPercent: 0.5,
         imgSource: require('drCodeTest/assets/images/deno-dinosaur.jpg'),
         description: 'Amazing Dino teddy bear for puppies',
+        fullDescription:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
         category: 'puppy',
       },
@@ -73,7 +81,9 @@ const SECTIONS = [
         price: 6.99,
         discountAvailable: false,
         imgSource: require('drCodeTest/assets/images/Sherlock.jpg'),
-        description: 'Chewable slippers for puppies',
+        description: 'cuteness level of infinity',
+        fullDescription:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
         category: 'puppy',
       },
@@ -84,14 +94,16 @@ const SECTIONS = [
         discountAvailable: true,
         discountPercent: 0.2,
         imgSource: require('drCodeTest/assets/images/squeeky.jpg'),
-        description: 'Annoying as hell but a very welcome distraction',
+        description: 'Annoying, but a very welcome distraction',
+        fullDescription:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
         category: 'puppy',
       },
     ],
   },
   {
-    category: 'sports',
+    category: 'Sports',
     data: [
       {
         id: 3,
@@ -101,6 +113,8 @@ const SECTIONS = [
         discountAmount: 3,
         imgSource: require('drCodeTest/assets/images/tabletennis.jpg'),
         description: 'Home ping pong table',
+        fullDescription:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
         category: 'sports',
       },
@@ -111,6 +125,8 @@ const SECTIONS = [
         discountAvailable: false,
         imgSource: require('drCodeTest/assets/images/tennisshorts.jpg'),
         description: 'Very fashionable tennis shorts that turn into trousers!',
+        fullDescription:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
         category: 'sports',
       },
@@ -123,6 +139,8 @@ const SECTIONS = [
         discountPercent: 0.2,
         imgSource: require('drCodeTest/assets/images/nike.jpeg'),
         description: 'Because everyone needs a ball',
+        fullDescription:
+          'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut tellus elementum sagittis vitae et. Amet dictum sit amet justo donec enim. Felis imperdiet proin fermentum leo vel.',
         imgURL: `https://i.pravatar.cc/`,
         category: 'sports',
       },
@@ -131,13 +149,8 @@ const SECTIONS = [
 ];
 
 const Item = ({item, navigation}) => {
-  console.log('test2', navigation);
-
-  const newScale = 2;
   const [itemClicked, setItemClicked] = useState(true);
-
-  const animatedButtonScale = new Animated.Value(1);
-
+  // const animatedButtonScale = new Animated.Value(1);
   const onPressIn = () => {
     // Animated.spring(animatedButtonScale, {
     //   toValue: 1.5,
@@ -145,7 +158,6 @@ const Item = ({item, navigation}) => {
     // }).start();
     setItemClicked(prev => !prev);
   };
-
   const onPressOut = () => {
     // Animated.spring(animatedButtonScale, {
     //   toValue: 1,
@@ -153,13 +165,12 @@ const Item = ({item, navigation}) => {
     // }).start();
     setItemClicked(prev => !prev);
   };
-
   //   const animatedScaleStyle = {
   //     transform: [{scale: animatedButtonScale}],
   //   };
   return (
     <TouchableOpacity
-      onPress={() => navigation.push('ProductDetails' /*, { contact: item }*/)}
+      onPress={() => navigation.push('ProductDetails', {product: item})}
       onPressIn={onPressIn}
       onPressOut={onPressOut}>
       <Animated.View style={styles.item}>
@@ -179,7 +190,10 @@ const Item = ({item, navigation}) => {
 
               {item.discountPercent && (
                 <Text style={styles.textPrimary}>
-                  £{item.price - item.price * item.discountPercent}
+                  £{' '}
+                  {parseFloat(
+                    item.price - item.price * item.discountPercent,
+                  ).toFixed(2)}
                 </Text>
               )}
               {item.discountAmount && (
@@ -201,9 +215,6 @@ const Item = ({item, navigation}) => {
 };
 
 const Product = ({navigation}) => {
-  // console.log('test', navigation);
-
-  // console.log('boo');
   const renderItem = ({item}) => <Item item={item} navigation={navigation} />;
   return (
     <View style={styles.container}>
@@ -240,7 +251,12 @@ const styles = StyleSheet.create({
     flexDirection: 'column',
   },
   itemClicked: {
-    transform: [{scale: 1.2}],
+    transform: [{scale: 1.4}],
+    borderTopLeftRadius: 10,
+    borderTopRightRadius: 10,
+    // aspectRatio: 4 / 3,
+    resizeMode: 'cover',
+    // width: '100%'
   },
   itemImage: {
     height: 250,
@@ -288,10 +304,10 @@ const styles = StyleSheet.create({
   },
   sectionHeader: {
     fontWeight: '800',
-    fontSize: 18,
-    color: '#f4f4f4',
+    fontSize: 24,
+    color: '#555',
     marginTop: 20,
-    marginBottom: 5,
+    marginBottom: 16,
   },
   priceContainer: {
     flexDirection: 'row',

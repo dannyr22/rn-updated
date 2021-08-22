@@ -6,13 +6,16 @@ import {createStackNavigator} from '@react-navigation/stack';
 
 const MarketStack = createStackNavigator();
 
-const MarketStackScreen = ({navigation}) => {
+const MarketStackScreen = () => {
   return (
-    <MarketStack.Navigator>
+    <MarketStack.Navigator
+      screenOptions={({route}) => ({
+        headerShown: false,
+      })}>
       <MarketStack.Screen
         name="Product"
         component={Product}
-        options={{navigation}}
+        // options={{navigation}}
         // options={{
         //   headerTitle: 'Products',
         // }}
@@ -20,7 +23,7 @@ const MarketStackScreen = ({navigation}) => {
       <MarketStack.Screen
         name="ProductDetails"
         component={ProductDetails}
-        options={{navigation}}
+        // options={{navigation}}
       />
     </MarketStack.Navigator>
   );
