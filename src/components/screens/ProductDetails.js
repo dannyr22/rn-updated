@@ -33,7 +33,7 @@ const ProductDetails = ({route, navigation}) => {
 
                 {product.discountPercent && (
                   <Text style={styles.textPrimary}>
-                    £{' '}
+                    £{''}
                     {parseFloat(
                       product.price - product.price * product.discountPercent,
                     ).toFixed(2)}
@@ -45,7 +45,7 @@ const ProductDetails = ({route, navigation}) => {
                   </Text>
                 )}
                 {product.price === null && (
-                  <Text style={styles.textFree}>Free</Text>
+                  <Text style={styles.textFree}>FREE</Text>
                 )}
               </View>
               <Text style={styles.textSecondary}>
@@ -90,11 +90,11 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   productImage: {
-    height: 450,
-    aspectRatio: 1 / 1,
+    height: 350,
+    // aspectRatio: 1 / 1,
     // borderColor: 'red',
     // borderWidth: 4,
-    resizeMode: 'contain',
+    resizeMode: 'cover',
     alignSelf: 'center',
     // width: '100%',
   },

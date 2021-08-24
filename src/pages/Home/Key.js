@@ -5,7 +5,7 @@ const Key = () => {
   return (
     <SafeAreaView>
       <View>
-        <Text>I am the key</Text>
+        <Text>I am not the key</Text>
       </View>
     </SafeAreaView>
   );
